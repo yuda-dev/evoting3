@@ -33,7 +33,8 @@ class VoterController extends Controller
                 $string .= $karakter{$pos};
 
             } $token = strtoupper($string);
-            /** CEK TOKEN SUDAH TERDAFTAR ATAU BELUM*/
+            
+            //CEK TOKEN SUDAH TERDAFTAR ATAU BELUM
             $cek = Pemilih::find($token);
 
             if(empty($cek))

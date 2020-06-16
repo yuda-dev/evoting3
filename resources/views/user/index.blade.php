@@ -20,9 +20,9 @@
         <div class="container-fluid">
             <div class="alert alert-warning">
                 <center><img src="{{ asset('adminlte/voting.png') }}" style="height: 150px;width: 180px" alt=""></center><hr>
-                <center><h5><i class="icon fas fa-bullhorn"></i> SELAMAT DATANG ! SALAM DEMOKRASI !</h5></center>
+                <center><h5><i class="icon fas fa-bullhorn"></i> SALAM DEMOKRASI !</h5></center>
                 <hr>
-                <center><a href="{{ url('user/voting_login') }}" class="btn btn-primary btn-lg"> Mulai Voting</a></center>
+                <center><a href="{{ url('user/voting_login') }}" class="btn btn-primary btn-lg"><i class="fa fa-vote-yea"> Mulai Voting</i></a></center>
             </div>
         </div>
     </section>

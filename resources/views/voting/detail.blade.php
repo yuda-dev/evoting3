@@ -19,25 +19,61 @@
  background-repeat: no-repeat;background-size: cover">
  <section class="content">
     <div class="container-fluid">
-        <div class="alert alert-warning" style="margin-top: 20px">
-            <center><h5><i class="icon fas fa-users"></i> DETAIL KANDIDAT </h5></center>
-            <hr>
-            <div class="row">
-                <div class="col-md-3">
-                    <center><img src="{{ url('kandidat', $kandidat_detail->photo) }}" alt="" style="height: 200x; width:180px">
-                    <hr><h4>{{ $kandidat_detail->nama }}</h4><hr>
-                    </center>
+         <!-- Main content -->
+    <section class="content"  style="margin-top : 20px">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+  
+              <!-- Profile Image -->
+              <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid"
+                         src="{{ url('kandidat', $kandidat_detail->photo) }}"
+                         alt="User profile picture" style="height: 180px; width: 380px">
+                  </div><hr>
+                  <h3 class="profile-username text-center">{{$kandidat_detail->nama}}</h3><hr>
                 </div>
-                <div class="col-md-9">
-                    <h5>Visi :</h5>
-                    <p>{{ $kandidat_detail->visi }}</p>
-                    <hr>
-                    <h5>Misi :</h5>
-                    <p>{{ $kandidat_detail->misi }}</p>
-                    <center> <p class="pul-right"><a href="{{ url('voting') }}" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Kembali</a></p></center>
-                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
-        </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+              <div class="card card-primary card-outline">
+                <div class="card-header p-2">
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                      <!-- Post -->
+                      <div class="post">
+                       <h4>Visi :</h4>
+                       <div class="form-group">
+                        <textarea class="form-control" cols="100" rows="4" style="background-color: white" readonly>{{ $kandidat_detail->visi }}</textarea>
+                       </div>
+                      <hr>
+                      <h4> Misi :</h4>
+                      <div class="form-group">
+                        <textarea class="form-control" cols="100" rows="4" style="background-color: white"  readonly>{{ $kandidat_detail->misi }}</textarea>
+                       </div>
+                      </div>
+                      <center><a href="{{url('voting')}}" class="btn btn-danger"><i class="fa fa-backward"></i></a></center>
+                      <!-- /.post -->
+                    </div>
+                  </div>
+                  <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+              </div>
+              <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
     </div>
  </section>
  

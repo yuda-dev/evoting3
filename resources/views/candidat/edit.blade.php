@@ -7,8 +7,8 @@
             <div class="box box-warning">
                 <div class="box-header" style="margin-top: 20px;margin-left: 10px">
                     <p>
-                        <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</a>
-                        <a href="{{url('paket-laundry')}}" class="btn btn-primary"><i class="fa fa-backward"></i> Kembali</a>
+                        <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i> </a>
+                        <a href="{{url('paket-laundry')}}" class="btn btn-primary"><i class="fa fa-backward"></i></a>
                     </p>
                     @if ($errors->any())
                         <div class="alert alert-danger">

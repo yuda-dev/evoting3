@@ -14,7 +14,7 @@ $pemilih = DB::select('SELECT*FROM pemilih');
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('adminlte/FT.png')}}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{url('uploads/',\Auth::user()->photo)}}" style="height: 40px;width: 40px" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ \Auth::user()->name}}</a>
@@ -34,12 +34,12 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                         </p>
                     </a>
                 </li>
-               
-                <li class="nav-item">
-                    <a href="{{url('candidat')}}" class="nav-link">
-                        <i class="nav-icon fas fa-address-book"></i>
-                        <p>Data Kandidat <span class="right badge badge-primary"> {{ count($kandidat) }}</span></p>
-                    </a>
+               @if (\Auth::user()->role_id == 1)
+               <li class="nav-item">
+                <a href="{{url('candidat')}}" class="nav-link">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>Data Kandidat <span class="right badge badge-primary"> {{ count($kandidat) }}</span></p>
+                </a>
                 </li>
 
                 <li class="nav-item">
@@ -56,7 +56,7 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                 </li>
                 <li class="nav-header">OTHER</li>
                 <li class="nav-item">
-                    <a href="{{url('hitung_cepat')}}" class="nav-link">
+                    <a href="{{url('users')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>User <span class="right badge badge-success"> New</span></p>
                     </a>
@@ -67,6 +67,36 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                         <p>Keluar</p>
                     </a>
                 </li>
+               @endif
+
+               @if (\Auth::user()->role_id == 2)
+               <li class="nav-item">
+                <a href="{{url('candidat')}}" class="nav-link">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>Data Kandidat <span class="right badge badge-primary"> {{ count($kandidat) }}</span></p>
+                </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{url('voter')}}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Data Pemilih <span class="right badge badge-warning"> {{ count($pemilih) }}</span></p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('hitung_cepat')}}" class="nav-link">
+                        <i class="nav-icon fas fa-vote-yea"></i>
+                        <p>Quic Count <span class="right badge badge-danger"> QC</span></p>
+                    </a>
+                </li>
+                <li class="nav-header">OTHER</li>
+                <li class="nav-item">
+                    <a href="{{url('keluar')}}" class="nav-link">
+                        <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                        <p>Keluar</p>
+                    </a>
+                </li>
+               @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

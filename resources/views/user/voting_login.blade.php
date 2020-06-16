@@ -23,7 +23,6 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <center><img src="{{ asset('adminlte/voting.png') }}" style="height: 150px;width: 180px" alt=""></center><hr>
-                <p class="login-box-msg">Silahkan Masukan Token terlebih dahulu !</p>
                 @if($message = Session::get('Gagal'))
                     <div class="row">
                         <div class="col">
@@ -48,12 +47,13 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign"></i> Masuk</button>
+                            <a href="{{url('user')}}" class="btn btn-danger btn-block"><i class="fa fa-backward"></i> Kembali</a>
                         </div>
                     </div>
                 </form>
             </div>
-        
+    
         </div>
     </div>
 </section>

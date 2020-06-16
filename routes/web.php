@@ -51,6 +51,17 @@ Route::group(['middleware'=>'auth'], function(){
     //quic count
     Route::get('hitung_cepat','HitungCepatController@index');
 
+     //users
+
+     Route::get('users','UsersController@index');
+     Route::get('users/add','UsersController@add');
+     Route::post('users/add','UsersController@store');
+     Route::get('users/edit/{id}','UsersController@edit');
+     Route::put('users/ubahprofile','UsersController@updateprofile');
+     Route::put('users/ubahpassword','UsersController@updatepassword');
+     Route::get('profile','UsersController@profile');
+     Route::delete('users/{id}','UsersController@delete');
+
 
 Route::get('/home', function () {
     return redirect('dashboard');

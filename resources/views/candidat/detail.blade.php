@@ -2,8 +2,10 @@
 
 @section('content')
 <br>
-<a href="{{url('candidat')}}" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Kembali</a>
-<button class="btn btn-warning btn-refresh"><i class="fa fa-spinner"></i> Refresh</button>
+<p>
+  <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i> </a>
+  <a href="{{url('candidat')}}" class="btn btn-danger"><i class="fa fa-backward"></i></a>
+</p>
 <hr>
     <!-- Main content -->
     <section class="content"  style="margin-top : 20px">
@@ -15,12 +17,11 @@
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"
+                    <img class="profile-user-img img-fluid"
                          src="{{ url('kandidat', $detail->photo) }}"
-                         alt="User profile picture" style="height: 150px; width: 140px">
-                  </div>
-  
-                  <h3 class="profile-username text-center">{{$detail->nama}}</h3>
+                         alt="User profile picture" style="height: 180px; width: 380px">
+                  </div><hr>
+                  <h3 class="profile-username text-center">{{$detail->nama}}</h3><hr>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -41,10 +42,14 @@
                       <!-- Post -->
                       <div class="post">
                        <h4>Visi :</h4>
-                       <h6>{{ $detail->visi }}</h6>
+                       <div class="form-group">
+                        <textarea class="form-control" cols="100" rows="4" style="background-color: white" readonly>{{ $detail->visi }}</textarea>
+                       </div>
                       <hr>
                       <h4> Misi :</h4>
-                      <h6>{{ $detail->misi }}</h6>
+                      <div class="form-group">
+                        <textarea class="form-control" cols="100" rows="4" style="background-color: white"  readonly>{{ $detail->misi }}</textarea>
+                       </div>
                       </div>
                       <!-- /.post -->
                     </div>
@@ -63,16 +68,16 @@
                                        <span class="fas fa-user"></span>
                                    </div>
                                </div>
-                           </div>
+                           </div><hr>
                            <div class="input-group mb-3">
                                <input type="file" class="form-controll" name="photo"  style="margin-bottom: 13px">
-                            </div>
+                            </div><hr>
                             <div class="input-group mb-3">
                                 <textarea name="visi" id="" cols="100" rows="4">{{ $detail->visi }}</textarea>
-                             </div>
+                             </div><hr>
                              <div class="input-group mb-3">
                                 <textarea name="misi" id="" cols="100" rows="4">{{ $detail->misi }}</textarea>
-                             </div>
+                             </div><hr>
 
                             <button type="submit" class="btn btn-primary btn-block">Edit</button>
                       </form>

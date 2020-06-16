@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Kandidat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class KandidatController extends Controller
 {
@@ -49,13 +50,14 @@ class KandidatController extends Controller
         $file = $request->file('photo');
         if($file)
         {
-            $file->move('kandidat', $file->getClientOriginalName());
-            $data->photo = $file->getClientOriginalName();        
+            $name = time().'-'. $file->getClientOriginalName();
+            $file->move('kandidat', $name);
+            $data->photo = $name;  
         }
         $data->save();
         \Session::flash('sukses','Kandidat Berhasil diubah');
 
-        return redirect()->back();
+        return redirect('candidat');
     }
 
     public function delete($id)

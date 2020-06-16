@@ -14,13 +14,13 @@
            <div class="card-body box-profile">
              <div class="text-center">
                <img class="profile-user-img img-fluid"
-                    src="{{ url('kandidat', $kdt->photo) }}" style="height: 130;width: 140px"
+                    src="{{ url('kandidat', $kdt->photo) }}" style="height: 180px;width: 380px"
                     alt="User profile picture">
-             </div>
+             </div><hr>
 
-             <h3 class="profile-username text-center">{{ $kdt->nama }}</h3>
+             <h3 class="profile-username text-center">{{ $kdt->nama }}</h3><hr>
 
-             <h6 class="text-center">Calon No. {{ $key+1 }}</h6>
+             <h5 class="text-center"> No. {{ $key+1 }}</h5><hr>
              <div class="row">
                  <div class="col-6">
                      <a href="{{ url('candidat/detail', $kdt->id) }}" class="btn btn-primary btn-block"><b><i class="fa fa-list"></i> Detail</b></a>
