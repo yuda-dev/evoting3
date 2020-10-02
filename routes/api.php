@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('kandidat','api\KandidatApi@index');
+Route::post('cektoken','UserController@ApiCektoken');
+Route::post('simpansuara','VotingController@apisimpansuara');

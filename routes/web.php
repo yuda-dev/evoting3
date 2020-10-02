@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard','DashboardController@index');
+    Route::post('user/voter/tambah','DashboardController@store');
 
     //kandidat
     Route::get('candidat','KandidatController@index');
@@ -69,5 +70,5 @@ Route::get('/home', function () {
 
 Route::get('/keluar', function () {
     Auth::logout();
-    return redirect('login');
+    return redirect('/');
 });

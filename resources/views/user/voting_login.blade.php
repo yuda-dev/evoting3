@@ -48,6 +48,7 @@
                     <div class="row">
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign"></i> Masuk</button>
+                            <a href="{{url('register')}}" class="btn btn-success btn-block"></i>Belum Punya Token?</a>
                             <a href="{{url('user')}}" class="btn btn-danger btn-block"><i class="fa fa-backward"></i> Kembali</a>
                         </div>
                     </div>

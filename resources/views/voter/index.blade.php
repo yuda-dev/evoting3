@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 
 @section('content')
@@ -23,8 +24,9 @@
                           <thead>
                           <tr>
                               <th>No</th>
-                              <th>Token</th>
+                              <th>Token Pemilih</th>
                               <th>Status</th>
+                              <th>Nama Pemilih</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -33,14 +35,22 @@
                               <td>{{$key+1}}</td>
                               <td>{{$dt->username}}</td>
                               <td>{{$dt->status->nama}}</td>
+                              <td>
+                                  @if($dt->user_id == null)
+                                    <span class="badge badge-danger"> No Name</span>
+                                  @else
+                                  {{$dt->user->name}}
+                                  @endif
+                              </td>
                           </tr>
                           @endforeach
                           </tbody>
                           <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Token</th>
-                            <th>Status</th>
+                             <th>Token Pemilih</th>
+                             <th>Status</th>
+                             <th>Nama Pemilih</th>
                           </tr>
                           </tfoot>
                       </table>
