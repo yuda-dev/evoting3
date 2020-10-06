@@ -36,18 +36,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('voter/hapus','VoterController@delete');
     Route::get('voter/export','VoterController@export');
 
-});
-
-    //Voting
-    Route::get('user','UserController@index');
-    Route::get('user/voting_login','UserController@voting_login');
-    Route::post('cektoken','UserController@cektoken');
-
-    //Voting kandidat
-    Route::get('voting','VotingController@index');
-    Route::get('voting/detail/{id}','VotingController@voting_detail');
-    Route::get('simpan_suara/{id}','VotingController@simpan_suara');
-    Route::get('user/logout_voting','UserController@logout_voting');
 
     //quic count
     Route::get('hitung_cepat','HitungCepatController@index');
@@ -62,6 +50,20 @@ Route::group(['middleware'=>'auth'], function(){
      Route::put('users/ubahpassword','UsersController@updatepassword');
      Route::get('profile','UsersController@profile');
      Route::delete('users/{id}','UsersController@delete');
+     
+});
+
+
+    //Voting
+    Route::get('user','UserController@index');
+    Route::get('user/voting_login','UserController@voting_login');
+    Route::post('cektoken','UserController@cektoken');
+
+ //Voting kandidat
+    Route::get('voting','VotingController@index');
+    Route::get('voting/detail/{id}','VotingController@voting_detail');
+    Route::get('simpan_suara/{id}','VotingController@simpan_suara');
+    Route::get('user/logout_voting','UserController@logout_voting');
 
 
 Route::get('/home', function () {
