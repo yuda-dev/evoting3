@@ -12,58 +12,64 @@
 */
 
 Route::get('/', function () {
-    return view('user.index');
+    $logo = \App\Logo::all();
+    return view('user.index', compact('logo'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware'=>'auth'], function(){
-    Route::get('dashboard','DashboardController@index');
-    Route::post('user/voter/tambah','DashboardController@store');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::post('user/voter/tambah', 'DashboardController@store');
 
     //kandidat
-    Route::get('candidat','KandidatController@index');
-    Route::post('candidat/tambah','KandidatController@store');
-    Route::get('candidat/detail/{id}','KandidatController@detail');
-    Route::put('candidat/edit/{id}','KandidatController@update');
-    Route::delete('candidat/hapus/{id}','KandidatController@delete');
-    
+    Route::get('candidat', 'KandidatController@index');
+    Route::post('candidat/tambah', 'KandidatController@store');
+    Route::get('candidat/detail/{id}', 'KandidatController@detail');
+    Route::put('candidat/edit/{id}', 'KandidatController@update');
+    Route::delete('candidat/hapus/{id}', 'KandidatController@delete');
+
     //Voter
-    Route::get('voter','VoterController@index');
-    Route::post('voter/tambah','VoterController@store');
-    Route::post('voter/hapus','VoterController@delete');
-    Route::get('voter/export','VoterController@export');
+    Route::get('voter', 'VoterController@index');
+    Route::post('voter/tambah', 'VoterController@store');
+    Route::post('voter/hapus', 'VoterController@delete');
+    Route::get('voter/export', 'VoterController@export');
 
 
     //quic count
-    Route::get('hitung_cepat','HitungCepatController@index');
+    Route::get('hitung_cepat', 'HitungCepatController@index');
 
-     //users
+    //users
 
-     Route::get('users','UsersController@index');
-     Route::get('users/add','UsersController@add');
-     Route::post('users/add','UsersController@store');
-     Route::get('users/edit/{id}','UsersController@edit');
-     Route::put('users/ubahprofile','UsersController@updateprofile');
-     Route::put('users/ubahpassword','UsersController@updatepassword');
-     Route::get('profile','UsersController@profile');
-     Route::delete('users/{id}','UsersController@delete');
-     
+    Route::get('users', 'UsersController@index');
+    Route::get('users/add', 'UsersController@add');
+    Route::post('users/add', 'UsersController@store');
+    Route::get('users/edit/{id}', 'UsersController@edit');
+    Route::put('users/ubahprofile', 'UsersController@updateprofile');
+    Route::put('users/ubahpassword', 'UsersController@updatepassword');
+    Route::get('profile', 'UsersController@profile');
+    Route::delete('users/{id}', 'UsersController@delete');
+    Route::post('users/reset', 'UsersController@reset');
+    Route::post('users/verifikasi', 'UsersController@verify');
+
+    //logo
+    Route::get('logo/{id}', 'LogoController@add');
+    Route::put('logo/update/{id}', 'LogoController@update');
 });
 
 
-    //Voting
-    Route::get('user','UserController@index');
-    Route::get('user/voting_login','UserController@voting_login');
-    Route::post('cektoken','UserController@cektoken');
+//Voting
+Route::get('user', 'UserController@index');
+Route::get('user/voting_login', 'UserController@voting_login');
+Route::post('cektoken', 'UserController@cektoken');
 
- //Voting kandidat
-    Route::get('voting','VotingController@index');
-    Route::get('voting/detail/{id}','VotingController@voting_detail');
-    Route::get('simpan_suara/{id}','VotingController@simpan_suara');
-    Route::get('user/logout_voting','UserController@logout_voting');
+//Voting kandidat
+Route::get('voting', 'VotingController@index');
+Route::get('voting/detail/{id}', 'VotingController@voting_detail');
+Route::get('simpan_suara/{id}', 'VotingController@simpan_suara');
+Route::get('user/logout_voting', 'UserController@logout_voting');
 
 
 Route::get('/home', function () {

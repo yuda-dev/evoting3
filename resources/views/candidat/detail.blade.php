@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+
+@if(\Auth::user()->role_id == 1)
 <br>
 <p>
   <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i> </a>
@@ -17,9 +19,9 @@
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid"
+                    <img
                          src="{{ url('kandidat', $detail->photo) }}"
-                         alt="User profile picture" style="height: 180px; width: 380px">
+                         alt="" width="100%">
                   </div><hr>
                   <h3 class="profile-username text-center">{{$detail->nama}}</h3><hr>
                 </div>
@@ -43,12 +45,12 @@
                       <div class="post">
                        <h4>Visi :</h4>
                        <div class="form-group">
-                        <textarea class="form-control" cols="100" rows="4" style="background-color: white" readonly>{{ $detail->visi }}</textarea>
+                        {!! $detail->visi !!}
                        </div>
                       <hr>
                       <h4> Misi :</h4>
                       <div class="form-group">
-                        <textarea class="form-control" cols="100" rows="4" style="background-color: white"  readonly>{{ $detail->misi }}</textarea>
+                        {!! $detail->misi !!}
                        </div>
                       </div>
                       <!-- /.post -->
@@ -69,14 +71,14 @@
                                    </div>
                                </div>
                            </div><hr>
-                           <div class="input-group mb-3">
+                           <div class="form-group">
                                <input type="file" class="form-controll" name="photo"  style="margin-bottom: 13px">
                             </div><hr>
-                            <div class="input-group mb-3">
-                                <textarea name="visi" id="" cols="100" rows="4">{{ $detail->visi }}</textarea>
+                            <div class="form-group">
+                               {!! $detail->visi !!}
                              </div><hr>
-                             <div class="input-group mb-3">
-                                <textarea name="misi" id="" cols="100" rows="4">{{ $detail->misi }}</textarea>
+                             <div class="form-group">
+                               {!! $detail->misi !!}
                              </div><hr>
 
                             <button type="submit" class="btn btn-primary btn-block">Edit</button>
@@ -97,4 +99,17 @@
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
+@else
+<div class="card-body">
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <center>
+        <h5><i class="icon fas fa-ban"></i> Maaf </h5>
+        Halaman yang anda minta tidak ditemukan, ! <br>
+        <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
+        </center>
+    </div>
+</div>    
+@endif
+
 @endsection

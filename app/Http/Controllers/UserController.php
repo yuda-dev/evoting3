@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kandidat;
+use App\Logo;
 use App\Pemilih;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('user.index');
+        $logo = Logo::all();
+        return view('user.index', compact('logo'));
     }
 
     public function voting_login()
@@ -31,19 +33,15 @@ class UserController extends Controller
         $cek = Pemilih::where(['username' => $token])->first();
         $status = Pemilih::where(['username' => $token, 'status_id' => 2])->first();
 
-        if(!$cek)
-        {
-            Session::flash('Gagal','Token tidak ditemukan');
+        if (!$cek) {
+            Session::flash('Gagal', 'Token tidak ditemukan');
             return redirect()->back();
-        } else
-        {
-            if(!$status)
-            {
-                Session::flash('Gagal','Token telah digunakan');
+        } else {
+            if (!$status) {
+                Session::flash('Gagal', 'Token telah digunakan');
                 return redirect()->back();
-            } else
-            {
-                $request->session()->put('token',$token);
+            } else {
+                $request->session()->put('token', $token);
                 return redirect('voting');
             }
         }

@@ -29,9 +29,8 @@
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid"
-                         src="{{ url('kandidat', $kandidat_detail->photo) }}"
-                         alt="User profile picture" style="height: 180px; width: 380px">
+                    <img src="{{ url('kandidat', $kandidat_detail->photo) }}"
+                         alt="" width="100%">
                   </div><hr>
                   <h3 class="profile-username text-center">{{$kandidat_detail->nama}}</h3><hr>
                 </div>
@@ -51,12 +50,12 @@
                       <div class="post">
                        <h4>Visi :</h4>
                        <div class="form-group">
-                        <textarea class="form-control" cols="100" rows="4" style="background-color: white" readonly>{{ $kandidat_detail->visi }}</textarea>
+                        {!! $kandidat_detail->visi !!}
                        </div>
                       <hr>
                       <h4> Misi :</h4>
                       <div class="form-group">
-                        <textarea class="form-control" cols="100" rows="4" style="background-color: white"  readonly>{{ $kandidat_detail->misi }}</textarea>
+                       {!! $kandidat_detail->misi !!}
                        </div>
                       </div>
                       <center><a href="{{url('voting')}}" class="btn btn-danger"><i class="fa fa-backward"></i></a></center>

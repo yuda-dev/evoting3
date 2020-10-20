@@ -1,40 +1,92 @@
+@extends('frontend.master')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MULAI VOTING</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
-</head>
-<body class="hold-transition login-page" style="background-image: url('{{ asset('adminlte/bg.jpg')}}'); background-repeat: no-repeat;background-size: cover">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="alert alert-warning">
-                <center><img src="{{ asset('adminlte/voting.png') }}" style="height: 150px;width: 180px" alt=""></center><hr>
-                <center><h5><i class="icon fas fa-bullhorn"></i> SALAM DEMOKRASI !</h5></center>
-                <hr>
-                <center><a href="{{ url('user/voting_login') }}" class="btn btn-primary btn-lg"><i class="fa fa-vote-yea"> Mulai Voting</i></a></center>
+@section('content')
+<div class="container">
+    <div class="d-none d-md-block">
+        <div class="card mt-5 mb-5" style="border-color: rgb(30, 231, 30)">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                @foreach ($logo as $lg)
+                                <center>
+                                <img src="{{ url('frontend', $lg->photo) }}"
+                                    width="50%" alt="">
+                                <center>
+                                <h5 class="mt-3"><strong>Selamat Datang,</strong></h5>
+                                <p>Di Sistem E-voting <strong>{{ $lg->nama }}</strong>, silahkan pilih <strong>"Daftar"</strong> untuk
+                                    mendapatkan token, dan Pilih <strong>"Voting"</strong> Untuk melakukan pemilihan
+                                </p>
+                                @endforeach
+                                <a href="{{ url('register') }}" class="btn btn-success"> Daftar</a>
+                                <a href="{{ url('user/voting_login') }}" class="btn btn-primary"> Voting</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('frontend/vote.png') }}" width="100%" alt="">
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    
-    
-<!-- jQuery -->
-<script src="{{asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+    </div>
 
-</body>
-</html>
+    <div class="sm-block d-md-none">
+        <div class="card mt-3 mb-3" style="border-color: rgb(30, 231, 30)">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ asset('frontend/vote.png') }}" width="100%" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                @foreach ($logo as $lg)
+                                <center>
+                                <img src="{{ url('frontend', $lg->photo) }}"
+                                    width="50%" alt="">
+                                <center>
+                                <h5 class="mt-3"><strong>Selamat Datang,</strong></h5>
+                                <p>Di Sistem E-voting <strong>{{ $lg->nama }}</strong>, silahkan pilih <strong>"Daftar"</strong> untuk
+                                    mendapatkan token, dan Pilih <strong>"Voting"</strong> Untuk melakukan pemilihan
+                                </p>
+                                @endforeach
+                                <a href="{{ url('register') }}" class="btn btn-success"> Daftar</a>
+                                <a href="{{ url('/user/voting_login') }}" class="btn btn-primary"> Voting</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
 
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <h6><strong>Petunjuk Pemilihan ( Jika Belum punya akun / token)</strong></h6>
+            <hr>
+            <p>1. Klik Daftar</p>
+            <p>2. Isi form dengan data yang valid</p>
+            <p>3. Buat Token di menu dashboard</p>
+            <p>4. Masukan Token untuk memilih kandidat </p>
+            <p>5. <a href="{{ url('hitung_cepat') }}"> Login</a> Untuk melihat perolehan suara secara realtime.</p>
+            <hr>
+        </div>
+        <div class="col-md-6">
+            <h6><strong>Petunjuk Pemilihan ( Yang sudah punya token )</strong></h6>
+            <hr>
+            <p>1. Klik Voting</p>
+            <p>2. Masukan Token untuk memilih kandidat</p>
+            <p>3. <a href="{{ url('hitung_cepat') }}"> Login</a> Untuk melihat perolehan suara secara realtime.</p>
+        </div>
+    </div>
+
+    <div class="row mt-3 mb-2">
+        <div class="col text-center">
+            Copyright by <strong>Yuda Muhtar</strong>
+        </div>
+    </div>
+</div>
+@endsection

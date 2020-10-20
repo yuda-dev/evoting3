@@ -29,9 +29,8 @@
           <div class="card card-primary card-outline">
              <div class="card-body box-profile">
                <div class="text-center">
-                 <img class="profile-user-img img-fluid"
-                      src="{{ url('kandidat', $kdt->photo) }}" style="height: 180px;width: 360px"
-                      alt="User profile picture">
+                 <img src="{{ url('kandidat', $kdt->photo) }}" width="100%"
+                      alt="">
                </div><hr>
   
                <h3 class="profile-username text-center">{{ $kdt->nama }}</h3><hr>

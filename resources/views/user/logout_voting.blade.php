@@ -24,7 +24,7 @@
             <div class="card-body login-card-body">
                 <center><img src="{{ asset('adminlte/voting.png') }}" style="height: 150px;width: 180px" alt=""></center><hr>
                 <center>
-                <h5 class="login-box-msg">Terimakasih Sudah Memilih,<br> Semoga Apa yang menjadi pilihan mu adalah yang terbaik.</h5>
+                <h5 class="login-box-msg">Terimakasih Sudah Memilih.</h5>
                 <h4><a href="{{ url('/') }}" class="btn btn-success"><i class="fa fa-home"></i> Kembali ke Halaman Home</a></h4>
                 </center>      
             </div>

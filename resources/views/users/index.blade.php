@@ -11,6 +11,26 @@
                     <button class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i></button>
                     <a href="{{ url('users/add') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
                     <a href="{{ url('profile') }}" class="btn btn-success"><i class="fa fa-user"></i> Ganti Profile</a>
+                    <hr>
+                    <div class="row">
+                        <div class="col-1">
+                            <form action="{{ url('users/reset') }}" method="post">
+                                @csrf
+                                <input type="text" name="reset" id="" value="0" hidden>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-sync"></i> Reset All
+                                    User</button>
+                            </form>
+                        </div>
+
+                        <div class="col-1 align-right">
+                            <form action="{{ url('users/verifikasi') }}" method="post">
+                                @csrf
+                                <input type="text" name="verify" id="" value="0" hidden>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Verify All
+                                    User</button>
+                            </form>
+                        </div>
+                    </div>
                 </p>
             </div>
 
@@ -23,37 +43,39 @@
                     <div class="table table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Level</th>
-                                <th>Email</th>
-                                <th>action</th>
-                                
-                            </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Level</th>
+                                    <th>Email</th>
+                                    <th>action</th>
+
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $key=>$dt)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{ $dt->name }}</td>
-                                <td>{{ $dt->role->nama }}</td>
-                                <td>{{ $dt->email }}</td>
-                                <td>
-                                    <a href="{{url('users', $dt->id)}}" id="delete" class="btn btn-sm btn-flat btn-danger btn-hapus"><i class="fa fa-trash"></i> </a>
-                                </td>
-                                
-                            </tr>
-                            @endforeach
+                                @foreach($data as $key=>$dt)
+                                <tr>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{ $dt->name }}</td>
+                                    <td>{{ $dt->role->nama }}</td>
+                                    <td>{{ $dt->email }}</td>
+                                    <td>
+                                        <a href="{{url('users', $dt->id)}}" id="delete"
+                                            class="btn btn-sm btn-flat btn-danger btn-hapus"><i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Level</th>
-                                <th>Email</th>
-                                <th>action</th>
-                            </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Level</th>
+                                    <th>Email</th>
+                                    <th>action</th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -79,13 +101,13 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Dari tanggal</label>
-                            <input type="date" class="form-control" name="dari"  autocomplete="off">
+                            <input type="date" class="form-control" name="dari" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label>Sampai tanggal</label>
                             <input type="date" class="form-control" name="sampai" autocomplete="off">
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -104,13 +126,12 @@
     <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <center>
-        <h5><i class="icon fas fa-ban"></i> Maaf </h5>
-        Halaman yang anda minta tidak ditemukan, ! <br>
-        <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
+            <h5><i class="icon fas fa-ban"></i> Maaf </h5>
+            Halaman yang anda minta tidak ditemukan, ! <br>
+            <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
         </center>
     </div>
-</div>       
+</div>
 @endif
-   
-@endsection
 
+@endsection

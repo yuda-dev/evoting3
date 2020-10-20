@@ -6,6 +6,7 @@ use App\Role;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -14,19 +15,19 @@ class UsersController extends Controller
     {
         $title = 'Data User';
         $data = Users::get();
-        return view('users.index',compact('title','data'));
+        return view('users.index', compact('title', 'data'));
     }
 
     public function add()
     {
         $title = 'Tambah Data user';
         $level = Role::get();
-        return view('users.add', compact('title','level'));
+        return view('users.add', compact('title', 'level'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'role_id' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -40,7 +41,7 @@ class UsersController extends Controller
         $data->password = Hash::make($request->password);
         $data->save();
 
-        \Session::flash('sukses','Data berhasil ditambahkan');
+        \Session::flash('sukses', 'Data berhasil ditambahkan');
 
         return redirect('users');
     }
@@ -49,14 +50,14 @@ class UsersController extends Controller
     {
         $title = 'Profile';
         $dt = Users::find(Auth::id());
-        return view('profile',compact('title','dt'));
+        return view('profile', compact('title', 'dt'));
     }
 
     public function edit($id)
     {
         $title = 'Profile';
         $dt = Users::find($id);
-        return view('users.edit',compact('title','dt'));
+        return view('users.edit', compact('title', 'dt'));
     }
 
     public function updateprofile(Request $request)
@@ -64,42 +65,64 @@ class UsersController extends Controller
         $data = Users::find(Auth::id());
         $data->name = $request->name;
         $data->email = $request->email;
-       
+
         $file = $request->file('photo');
-        if($file){
+        if ($file) {
             $file->move('uploads', $file->getClientOriginalName());
-            $data->photo =$file->getClientOriginalName();
+            $data->photo = $file->getClientOriginalName();
         }
         $data->save();
 
-        \Session::flash('sukses','Data berhasil ubah');
+        \Session::flash('sukses', 'Data berhasil ubah');
 
         return redirect()->back();
     }
 
     public function updatepassword(Request $request)
     {
-        $this->validate($request,[
-            'oldpassword' =>'required',
+        $this->validate($request, [
+            'oldpassword' => 'required',
             'password' => 'required', 'string', 'min:8', 'confirmed'
         ]);
 
         $ubahPassword = Auth::user()->password;
-        if(Hash::check($request->oldpassword, $ubahPassword))
-        {
-                $user = Users::find(Auth::id());
-                $user->password = Hash::make($request->password);
-                $user->save();
-                Auth::logout();
-                return redirect()->back();
+        if (Hash::check($request->oldpassword, $ubahPassword)) {
+            $user = Users::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->back();
         }
+    }
+
+    public function reset(Request $request)
+    {
+        $res = $request->reset;
+        if ($res == 0) {
+            DB::table('users')->update(['status_pilih' => 1]);
+            DB::table('pemilih')->delete();
+        }
+
+        \Session::flash('sukses', 'Semua User berhasil di Reset');
+        return redirect()->back();
+    }
+
+    public function verify(Request $request)
+    {
+        $ver = $request->verify;
+        if ($ver == 0) {
+            DB::table('users')->where('role_id', 3)->update(['status_pilih' => 1]);
+        }
+
+        \Session::flash('sukses', 'Semua User berhasil di Verifikasi');
+        return redirect()->back();
     }
 
     public function delete($id)
     {
         Users::find($id)->delete();
 
-        \Session::flash('sukses','Data berhasil di tambahkan');
+        \Session::flash('sukses', 'Data berhasil di tambahkan');
 
         return redirect()->back();
     }

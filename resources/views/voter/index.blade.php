@@ -2,7 +2,8 @@
 @extends('layouts.master')
 
 @section('content')
-<br>
+@if (\Auth::user()->role_id == 1 || \Auth::user()->role_id ==2)
+    <br>
 <p>
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addmodal"><i class="fa fa-plus"></i> Tambah</a>
     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delmodal"><i class="fa fa-trash"></i> Hapus</a>
@@ -64,4 +65,16 @@
   @include('voter.hapus')
 </div>
 @include('voter.add')
+@else
+    <div class="card-body">
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <center>
+            <h5><i class="icon fas fa-ban"></i> Maaf </h5>
+            Halaman yang anda minta tidak ditemukan, ! <br>
+            <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
+        </center>
+    </div>
+</div>
+@endif
 @endsection

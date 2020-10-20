@@ -13,7 +13,7 @@ class KandidatController extends Controller
     {
         $title = 'Kandidat';
         $kandidat = Kandidat::all();
-        return view('candidat.index',compact('title','kandidat'));
+        return view('candidat.index', compact('title', 'kandidat'));
     }
 
     public function store(Request $request)
@@ -23,13 +23,12 @@ class KandidatController extends Controller
         $data->visi = $request->visi;
         $data->misi = $request->misi;
         $file = $request->file('photo');
-        if($file)
-        {
+        if ($file) {
             $file->move('kandidat', $file->getClientOriginalName());
-            $data->photo = $file->getClientOriginalName();        
+            $data->photo = $file->getClientOriginalName();
         }
         $data->save();
-        \Session::flash('sukses','Kandidat Berhasil ditambahkan');
+        \Session::flash('sukses', 'Kandidat Berhasil ditambahkan');
 
         return redirect()->back();
     }
@@ -38,7 +37,7 @@ class KandidatController extends Controller
     {
         $title = 'Detail Kandidat';
         $detail = Kandidat::find($id);
-        return view('candidat.detail',compact('title','detail'));
+        return view('candidat.detail', compact('title', 'detail'));
     }
 
     public function update(Request $request, $id)
@@ -48,14 +47,13 @@ class KandidatController extends Controller
         $data->visi = $request->visi;
         $data->misi = $request->misi;
         $file = $request->file('photo');
-        if($file)
-        {
-            $name = time().'-'. $file->getClientOriginalName();
+        if ($file) {
+            $name = time() . '-' . $file->getClientOriginalName();
             $file->move('kandidat', $name);
-            $data->photo = $name;  
+            $data->photo = $name;
         }
         $data->save();
-        \Session::flash('sukses','Kandidat Berhasil diubah');
+        \Session::flash('sukses', 'Kandidat Berhasil diubah');
 
         return redirect('candidat');
     }
@@ -63,7 +61,7 @@ class KandidatController extends Controller
     public function delete($id)
     {
         Kandidat::find($id)->delete();
-        \Session::flash('sukses','Kandidat Berhasil dihapus');
+        \Session::flash('sukses', 'Kandidat Berhasil dihapus');
 
         return redirect()->back();
     }
