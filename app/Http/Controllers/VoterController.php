@@ -15,7 +15,7 @@ class VoterController extends Controller
     public function index()
     {
         $title = 'Pemilih';
-        $data = Pemilih::all();
+        $data = Pemilih::orderBy('status_id', 'desc')->get();
         return view('voter.index', compact('data', 'title'));
     }
 

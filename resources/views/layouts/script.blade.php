@@ -53,6 +53,8 @@
 
 <script type="text/javascript" src="{{ asset('js/buttons.print.min.js') }}"></script>
 
+@yield('script')
+
 <script>
     $(function () {
         $("#example1").DataTable();

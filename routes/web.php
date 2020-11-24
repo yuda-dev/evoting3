@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
+    $title = 'E-Voting | Pemilihan Umum Berbasis Online';
     $logo = \App\Logo::all();
-    return view('user.index', compact('logo'));
+    return view('user.index', compact('logo', 'title'));
 });
 
 Auth::routes();
@@ -30,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('candidat/detail/{id}', 'KandidatController@detail');
     Route::put('candidat/edit/{id}', 'KandidatController@update');
     Route::delete('candidat/hapus/{id}', 'KandidatController@delete');
+    Route::get('candidat/export', 'KandidatController@export');
+    Route::get('category/candidat/{id}', 'KandidatController@postbyCategory');
 
     //Voter
     Route::get('voter', 'VoterController@index');
@@ -51,12 +54,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('users/ubahpassword', 'UsersController@updatepassword');
     Route::get('profile', 'UsersController@profile');
     Route::delete('users/{id}', 'UsersController@delete');
-    Route::post('users/reset', 'UsersController@reset');
-    Route::post('users/verifikasi', 'UsersController@verify');
+    Route::get('users/reset', 'UsersController@reset');
+    Route::get('users/verifikasi', 'UsersController@verify');
+    Route::get('users/verify/{id}', 'UsersController@vertifikasi');
+    Route::get('users/destroy', 'UsersController@destroy');
 
     //logo
     Route::get('logo/{id}', 'LogoController@add');
     Route::put('logo/update/{id}', 'LogoController@update');
+
+    //category
+    Route::get('category', 'CategoryController@index');
+    Route::get('category/add', 'CategoryController@add');
+    Route::post('category/add', 'CategoryController@store');
+    Route::get('category/edit/{id}', 'CategoryController@edit');
+    Route::put('category/ubah/{id}', 'CategoryController@update');
+    Route::delete('category/delete/{id}', 'CategoryController@delete');
 });
 
 
@@ -64,17 +77,26 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('user', 'UserController@index');
 Route::get('user/voting_login', 'UserController@voting_login');
 Route::post('cektoken', 'UserController@cektoken');
+Route::get('category/kandidat/{id}', 'UserController@postbyCategory');
+Route::get('about', 'UserController@about');
 
 //Voting kandidat
 Route::get('voting', 'VotingController@index');
 Route::get('voting/detail/{id}', 'VotingController@voting_detail');
 Route::get('simpan_suara/{id}', 'VotingController@simpan_suara');
 Route::get('user/logout_voting', 'UserController@logout_voting');
+Route::get('user/block', 'UserController@block');
+
+//registrasi
+Route::get('daftar', 'DaftarController@index');
+Route::post('daftar/add', 'DaftarController@store');
+
 
 
 Route::get('/home', function () {
     return redirect('dashboard');
 });
+
 
 Route::get('/keluar', function () {
     Auth::logout();

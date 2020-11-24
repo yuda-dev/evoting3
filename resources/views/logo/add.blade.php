@@ -2,12 +2,13 @@
 
 @section('content')
 
-<div class="row">
+@if (\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
+    <div class="row">
     <div class="col-md-12">
         <div class="box box-warning">
             <div class="box-header" style="margin-top: 20px;margin-left: 10px">
                 <p>
-                    <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</a>
+                    <a href="" class="btn btn-warning btn-refresh btn-sm"><i class="fa fa-sync"></i> Refresh</a>
                 </p>
                 <hr>
             </div>
@@ -29,6 +30,24 @@
                                 <input type="text" class="form-control" name="nama" id="exampleInputEmail1"
                                     value="{{ $dt->nama }}" placeholder="Masukan Nama Sekolah / Instansi">
                             </div>
+                             <div class="form-group">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        About
+                                    </h3>
+                                    <!-- /. tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body pad">
+                                    <div class="mb-3">
+                                        <textarea class="textarea" placeholder="Place some text here" name="about"
+                                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                         {{ $dt->about }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group">
@@ -41,7 +60,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <hr>
                             <h5 class="mt-2">Preview</h5>
-                            <img src="{{ url('frontend', $dt->photo) }}" alt="">
+                            <img src="{{ url('frontend', $dt->photo) }}" width="30%" alt="">
                         </div>
                     </form>
                 </div>
@@ -49,5 +68,8 @@
         </div>
     </div>
 </div>
+@else
+@include('layouts.alert')    
+@endif
 
 @endsection

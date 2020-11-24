@@ -8,15 +8,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
                 <form role="form" enctype="multipart/form-data" method="post" action="{{url('candidat/tambah')}}">
                     @csrf
                     <div class="card-body">
@@ -24,11 +15,23 @@
                             <label for="exampleInputEmail1">Nama Calon</label>
                             <input type="text" class="form-control" name="nama" id="exampleInputEmail1"
                                 placeholder="Nama Calon" autocomplete="off">
+                                <p>*Wajib di isi</p>
                         </div>
                         <div class="form-group">
                             <label for=""> Photo</label>
                             <input type="file" name="photo" class="form-control">
+                            <p>* Max 2 Mb</p>
                         </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control select2" width="100%" name="category_id">
+                                <option></option>
+                                @foreach ($category as $ctg)
+                                <option value="{{ $ctg->id }}">{{ $ctg->nama }}</option>
+                                @endforeach
+                            </select><br>
+                            <p>Note : Biasanya dipakai Lomba yang mempunyai Kategori perlombaan, selain itu kosongkan saja</p>
+                        </div><hr>
                         <div class="form-group">
                             <div class="card card-outline card-info">
                                 <div class="card-header">
@@ -46,6 +49,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p>*Visi & Misi Boleh Kosong</p>
                         </div>
                         <div class="form-group">
                             <div class="card card-outline card-info">

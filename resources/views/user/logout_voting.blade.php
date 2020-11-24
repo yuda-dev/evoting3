@@ -14,8 +14,15 @@
     <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
+     <link rel="stylesheet" href="{{ asset('css/yuda.css') }}">
+      <script type="text/javascript"> 
+history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+    </script> 
 </head>
-<body class="hold-transition login-page" style="background-image: url('{{ asset('adminlte/bg.jpg')}}');
+<body class="hold-transition login-page" style="background-image: url('{{ asset('frontend/bg.png')}}');
  background-repeat: no-repeat;background-size: cover">
 
 <section class="content">
@@ -31,11 +38,20 @@
         </div>
     </div>
 </section>
+
+<footer>
+        <div class="footer">
+            <p class="text-white"><i class="fa fa-copyright" aria-hidden="true"></i> Copyrigth by | <strong
+                    class="text-white">Yuda
+                    Muhtar</strong></p>
+        </div>
+    </footer>
 <script src="{{asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+
 
 </body>
 </html>

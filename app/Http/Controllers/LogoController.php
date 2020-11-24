@@ -18,6 +18,7 @@ class LogoController extends Controller
     {
         $data = Logo::find($id);
         $data->nama = $request->nama;
+        $data->about = $request->about;
         $file = $request->file('photo');
         if ($file) {
             $nama = time() . '-' . $file->getClientOriginalName();

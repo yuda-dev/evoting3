@@ -9,14 +9,34 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <title>E-Voting | Pemilihan Umum Berbasis Online</title>
+    <link rel="stylesheet" href="{{ asset('css/yuda.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title>{{ $title }}</title>
 </head>
 
-<body>
+<body
+    style="background-image: url('{{ asset('frontend/bg.png')}}'); background-repeat: no-repeat;background-size: cover">
+
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{ asset('adminlte/voting.png') }}" width="30" height="30" class="d-inline-block align-top" alt=""
+                loading="lazy">
+            E-voting-School
+        </a>
+        <a href="{{ url('about') }}" class="ml-auto"> <i class="fa fa-info-circle" aria-hidden="true"></i> About </a>
+    </nav>
 
     @yield('content')
     <!-- Optional JavaScript; choose one of the two! -->
+    <div class="container">
+        <footer>
+            <div class="footer">
+                <p class="text-white"><i class="fa fa-copyright" aria-hidden="true"></i> Copyrigth by | <strong class="text-white">Yuda
+                        Muhtar</strong></p>
+            </div>
+        </footer>
+    </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

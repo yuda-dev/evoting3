@@ -35,7 +35,13 @@
                           <tr>
                               <td>{{$key+1}}</td>
                               <td>{{$dt->username}}</td>
-                              <td>{{$dt->status->nama}}</td>
+                              <td>
+                                  @if($dt->status_id == 2)
+                                    <span class="badge badge-danger"> Belum Voting</span>
+                                  @else
+                                    <span class="badge badge-success"> Sudah Voting</span>
+                                  @endif
+                              </td>
                               <td>
                                   @if($dt->user_id == null)
                                     <span class="badge badge-danger"> No Name</span>

@@ -76,21 +76,18 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
         <!-- Profile Image -->
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
+                <h5 class="text-center">{{ $key+1 }}</h5>
+                <hr>
                 <div class="text-center">
                     <img src="{{ url('kandidat', $kdt->photo) }}" width="100%" alt="">
                 </div>
                 <hr>
-
                 <h3 class="profile-username text-center">{{ $kdt->nama }}</h3>
-                <hr>
-
-                <h4 class="text-center">No. {{ $key+1 }}</h4>
                 <hr>
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-primary btn-block"><b>Jumlah Suara <br>
-                                <h3>( {{ $kdt->jumlah_suara }} )</h3>
-                            </b></button>
+                        <h5 class="text-center"><i class="fa fa-calculator" aria-hidden="true"></i> Jumlah :
+                            <strong>{{ $kdt->jumlah_suara }}</strong> Suara</h5>
                     </div>
                 </div>
             </div>
@@ -100,7 +97,9 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
     </div>
     @endforeach
 </div>
+
 @else
+
 <div class="container">
     <center>
         @if (\Auth::user()->status_pilih == 1)
@@ -112,9 +111,10 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
                         placeholder="Masukan Jumlah Pemilih" autocomplete="off">
                 </div>
                 <div class="alert alert-default mt-4" style="border-color: green">
-                    <p><strong>Selamat Datang, <strong>{{ \Auth::user()->name }}</strong>. <br>Silahkan klik tombol "
-                            Buat Token " di bawah ini untuk mendapatkan <br> Token pemilihan </strong></p>
-
+                    <p><strong>Selamat <strong>{{ \Auth::user()->name }}, </strong><br>
+                            <p style="color: green">Akun Anda sudah di Verifikasi !!</p> <hr>Silahkan klik tombol "
+                            Buat Token " di bawah ini untuk mendapatkan <br> Token pemilihan
+                        </strong></p>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Buat Token</button>
                 </div>
             </div>
@@ -123,8 +123,8 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
 
         @if(\Auth::user()->status_pilih == 2)
         <div class="alert alert-default mt-4" style="border-color: red">
-            <strong>Hallo {{\Auth::user()->name}} !! <br> Maaf anda tidak dapat membuat token lagi.
-                Terimakasih</strong>
+            <strong>Hore {{\Auth::user()->name}} !! Token berhasil dubuat. <br> 
+                Token ini hanya bisa dipakai satu kali</strong>
             <form>
                 <div class="form-group">
                     <h3> Token : <br> <br>
@@ -141,12 +141,11 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
         @endif
 
         @if (\Auth::user()->status_pilih == 0)
-            <div class="alert alert-danger mt-5">
-                <h3> Maaf {{ \Auth::user()->name }}, Akun Anda belum di verifikasi oleh Admin. <br>
-                Tunggu Beberapa saat lagi</h3>
-
-                <a href="{{ url('/keluar') }}" class="btn btn-primary"> Logout</a>
-            </div>
+        <div class="alert alert-info mt-2">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <h5> Hallo {{ \Auth::user()->name }}, <br>Akun Anda belum di verifikasi oleh Panitia. <br>
+                Tunggu sampai akun anda diverifikasi. Terimakasih.</h5>
+        </div>
         @endif
 
         <center>

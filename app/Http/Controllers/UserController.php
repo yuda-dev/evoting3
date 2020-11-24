@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Kandidat;
 use App\Logo;
 use App\Pemilih;
@@ -12,19 +13,33 @@ class UserController extends Controller
 {
     public function index()
     {
+        $title = 'E-Voting | Pemilihan Umum Berbasis Online';
         $logo = Logo::all();
-        return view('user.index', compact('logo'));
+        return view('user.index', compact('logo', 'title'));
+    }
+
+    public function about()
+    {
+        $title = 'E-voting | About';
+        return view('user.about', compact('title'));
     }
 
     public function voting_login()
     {
-        return view('user.voting_login');
+        $title = 'E-voting | Voting Login';
+        return view('user.voting_login', compact('title'));
     }
 
     public function logout_voting(Request $data)
     {
         $data->session()->forget('token');
         return view('user.logout_voting');
+    }
+
+
+    public function block()
+    {
+        return view('user.block');
     }
 
     public function cektoken(Request $request)
@@ -44,6 +59,17 @@ class UserController extends Controller
                 $request->session()->put('token', $token);
                 return redirect('voting');
             }
+        }
+    }
+
+    public function postbyCategory(Request $data, $id)
+    {
+        if ($data->session()->get('token')) {
+            $category = Category::find($id);
+
+            return view('voting.category', compact('category'));
+        } else {
+            return redirect('user/voting_login');
         }
     }
 }

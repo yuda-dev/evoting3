@@ -8,29 +8,16 @@
         <div class="box box-warning">
             <div class="box-header" style="margin-top: 20px;margin-left: 2px">
                 <p>
-                    <button class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i></button>
-                    <a href="{{ url('users/add') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
-                    <a href="{{ url('profile') }}" class="btn btn-success"><i class="fa fa-user"></i> Ganti Profile</a>
+                    <button class="btn btn-warning btn-refresh btn-sm"><i class="fa fa-sync"></i></button>
+                    <a href="{{ url('users/add') }}" class="btn btn-primary btn-sm">[ <i class="fa fa-plus"></i> ]</a>
+                    <a href="{{ url('profile') }}" class="btn btn-success btn-sm"><i class="fa fa-user"></i> Ganti Profile</a>
                     <hr>
-                    <div class="row">
-                        <div class="col-1">
-                            <form action="{{ url('users/reset') }}" method="post">
-                                @csrf
-                                <input type="text" name="reset" id="" value="0" hidden>
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-sync"></i> Reset All
-                                    User</button>
-                            </form>
-                        </div>
+                    <a href="{{ url('users/reset') }}" class="btn btn-warning btn-sm"> <i class="fa fa-sync"></i> Reset</a>
 
-                        <div class="col-1 align-right">
-                            <form action="{{ url('users/verifikasi') }}" method="post">
-                                @csrf
-                                <input type="text" name="verify" id="" value="0" hidden>
-                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Verify All
-                                    User</button>
-                            </form>
-                        </div>
-                    </div>
+                    <a href="{{ url('users/verifikasi') }}" class="btn btn-success btn-sm"> <i class="fa fa-check"></i>
+                        Verifikasi</a>
+
+                    <a href="{{ url('users/destroy') }}" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete</a>
                 </p>
             </div>
 
@@ -46,8 +33,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Level</th>
                                     <th>Email</th>
+                                    <th>Nim/Nis</th>
+                                    <th>Jurusan</th>
+                                    <th>Level</th>
+                                    <th>Status</th>
                                     <th>action</th>
 
                                 </tr>
@@ -57,23 +47,41 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{ $dt->name }}</td>
-                                    <td>{{ $dt->role->nama }}</td>
                                     <td>{{ $dt->email }}</td>
+                                    <td>{{ $dt->nim_nis }}</td>
+                                    <td>{{ $dt->jurusan }}</td>
+                                    <td>{{ $dt->role->nama }}</td>
+                                    <td>
+                                        @if ($dt->status_pilih == 0)
+                                        <span class="badge badge-danger"> Belum diverifikasi</span>
+                                        @else
+                                        <span class="badge badge-success"> Sudah diverifikasi</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{url('users', $dt->id)}}" id="delete"
                                             class="btn btn-sm btn-flat btn-danger btn-hapus"><i class="fa fa-trash"></i>
                                         </a>
+                                        @if ($dt->status_pilih == 0)
+                                        <a href="{{url('users/verify', $dt->id)}}" id=""
+                                            class="btn btn-sm btn-flat btn-success"><i class="fa fa-check"></i>
+                                        </a>
+                                        @else
+                                        <button class="btn btn-warning" disabled><i class="fa fa-ban"></i></button>
+                                        @endif
                                     </td>
-
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>No</th>
+                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Level</th>
                                     <th>Email</th>
+                                    <th>Nim/Nis</th>
+                                    <th>Jurusan</th>
+                                    <th>Level</th>
+                                    <th>Status</th>
                                     <th>action</th>
                                 </tr>
                             </tfoot>
@@ -86,52 +94,8 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="modal-filter">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{$title}}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form role="form" method="get" action="{{url('transaksi/filter')}}">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Dari tanggal</label>
-                            <input type="date" class="form-control" name="dari" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label>Sampai tanggal</label>
-                            <input type="date" class="form-control" name="sampai" autocomplete="off">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
 @else
-<div class="card-body">
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <center>
-            <h5><i class="icon fas fa-ban"></i> Maaf </h5>
-            Halaman yang anda minta tidak ditemukan, ! <br>
-            <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
-        </center>
-    </div>
-</div>
+@include('layouts.alert') 
 @endif
 
 @endsection

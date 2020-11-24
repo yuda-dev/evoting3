@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function index()
     {
         $title = 'Data User';
-        $data = Users::get();
+        $data = Users::orderBy('created_at', 'desc')->get();
         return view('users.index', compact('title', 'data'));
     }
 
@@ -38,6 +38,7 @@ class UsersController extends Controller
         $data->name = $request->name;
         $data->role_id = $request->role_id;
         $data->email = $request->email;
+        $data->status_pilih = 2;
         $data->password = Hash::make($request->password);
         $data->save();
 
@@ -95,26 +96,44 @@ class UsersController extends Controller
         }
     }
 
-    public function reset(Request $request)
+    public function reset()
     {
-        $res = $request->reset;
-        if ($res == 0) {
-            DB::table('users')->update(['status_pilih' => 1]);
-            DB::table('pemilih')->delete();
-        }
+
+        DB::table('users')
+            ->where('role_id', 3)
+            ->update(['status_pilih' => 1]);
+
+        DB::table('kandidat')->update(['jumlah_suara' => 0]);
+
+        DB::table('pemilih')->update(['status_id' => 2]);
 
         \Session::flash('sukses', 'Semua User berhasil di Reset');
+
         return redirect()->back();
     }
 
-    public function verify(Request $request)
+    public function verify()
     {
-        $ver = $request->verify;
-        if ($ver == 0) {
-            DB::table('users')->where('role_id', 3)->update(['status_pilih' => 1]);
-        }
+        DB::table('users')->where('role_id', 3)->update(['status_pilih' => 1]);
 
         \Session::flash('sukses', 'Semua User berhasil di Verifikasi');
+        return redirect()->back();
+    }
+
+    public function vertifikasi($id)
+    {
+        DB::table('users')->where('id', $id)->update(['status_pilih' => 1]);
+
+        \Session::flash('sukses', 'User berhasil di Verifikasi');
+        return redirect()->back();
+    }
+
+    public function destroy()
+    {
+        DB::table('users')->where('role_id', 3)->delete();
+
+        \Session::flash('sukses', ' Semua User berhasil di hapus');
+
         return redirect()->back();
     }
 
@@ -122,7 +141,7 @@ class UsersController extends Controller
     {
         Users::find($id)->delete();
 
-        \Session::flash('sukses', 'Data berhasil di tambahkan');
+        \Session::flash('sukses', 'Data berhasil di hapus');
 
         return redirect()->back();
     }

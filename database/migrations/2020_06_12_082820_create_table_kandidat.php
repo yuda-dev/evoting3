@@ -15,12 +15,15 @@ class CreateTableKandidat extends Migration
     {
         Schema::create('kandidat', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('category_id')->nullable();
             $table->string('nama');
-            $table->text('visi');
-            $table->text('misi');
-            $table->string('photo');
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
+            $table->string('photo')->nullable();
             $table->integer('jumlah_suara');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

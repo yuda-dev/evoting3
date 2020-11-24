@@ -2,27 +2,27 @@
 
 @section('content')
 
-@if(\Auth::user()->role_id ==1 || \Auth::user()->role_id == 2  )
+@if(\Auth::user()->role_id ==1 || \Auth::user()->role_id == 2 )
 <br>
 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addmodal"><i class="fa fa-plus"></i> Tambah</a>
+<a href="{{ url('candidat/export') }}" class="btn btn-success"><i class="fa fa-file-excel"></i> Export</a>
 <button class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i></button>
 <hr>
 <div class="row" style="margin-top: 10px">
     @include('candidat.add')
     @foreach ($kandidat as $key=>$kdt)
-    <div class="col-md-4">
+    @if ($kdt->category_id == null)
+    <div class="col-md-4 mt-3">
         <!-- Profile Image -->
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
+                <h5 class="text-center">{{ $key+1 }}</h5><hr>
                 <div class="text-center">
-                    <img src="{{ url('kandidat', $kdt->photo) }}" width="100%" width="200" alt="">
+                    <img src="{{ url('kandidat', $kdt->photo) }}" width="100%" alt="">
                 </div>
                 <hr>
 
                 <h3 class="profile-username text-center">{{ $kdt->nama }}</h3>
-                <hr>
-
-                <h5 class="text-center"> No. {{ $key+1 }}</h5>
                 <hr>
                 <div class="row">
                     <div class="col-6">
@@ -39,19 +39,30 @@
         </div>
         <!-- /.card -->
     </div>
+    @else
+
+    @endif
     @endforeach
 
 </div>
-@else
-<div class="card-body">
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <center>
-            <h5><i class="icon fas fa-ban"></i> Maaf </h5>
-            Halaman yang anda minta tidak ditemukan, ! <br>
-            <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
-        </center>
+<div class="row">
+    @foreach ($category as $ct)
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ $ct->nama }}</h3>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{{ url('category/candidat', $ct->id) }}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
     </div>
+    @endforeach
 </div>
+@else
+@include('layouts.alert')
 @endif
 @endsection

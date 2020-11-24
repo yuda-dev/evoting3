@@ -3,11 +3,11 @@
     <a href="{{url('/')}}" class="brand-link">
         <img src="{{asset('adminlte/voting.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">E-VOTING V.02</span>
+        <span class="brand-text font-weight-light">E-VOTING SCHOOL</span>
     </a>
     <?php
-$kandidat = DB::select('SELECT*FROM kandidat');
-$pemilih = DB::select('SELECT*FROM pemilih');
+$kandidat = \App\Kandidat::all();
+$pemilih = \App\Pemilih::all();
 ?>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -49,10 +49,15 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                 <li class="nav-item">
                     <a href="{{url('logo/1')}}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
-                        <p>Banner</p>
+                        <p>Ubah Logo <span class="right badge badge-success"> New</span></p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{url('category')}}" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>Data Category <span class="right badge badge-success"> New</span></p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{url('candidat')}}" class="nav-link">
                         <i class="nav-icon fas fa-address-book"></i>
@@ -95,13 +100,20 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                 
                 @endif
 
+                @if (\Auth::user()->status_pilih == 0) 
+                
+                @endif
                 @if (\Auth::user()->status_pilih == 1) 
+                
+                @endif
+                @if (\Auth::user()->status_pilih == 2) 
                 <li class="nav-item">
                     <a href="{{url('hitung_cepat')}}" class="nav-link">
                         <i class="nav-icon fas fa-vote-yea"></i>
                         <p>Quic Count <span class="right badge badge-danger"> QC</span></p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-header">OTHER</li>
                 <li class="nav-item">
                     <a href="{{url('keluar')}}" class="nav-link">
@@ -109,7 +121,6 @@ $pemilih = DB::select('SELECT*FROM pemilih');
                         <p>Keluar</p>
                     </a>
                 </li>
-                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

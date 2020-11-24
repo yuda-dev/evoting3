@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if(\Auth::user()->role_id == 1)
+@if(\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
 <br>
 <p>
   <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i> </a>
@@ -75,10 +75,24 @@
                                <input type="file" class="form-controll" name="photo"  style="margin-bottom: 13px">
                             </div><hr>
                             <div class="form-group">
-                               {!! $detail->visi !!}
+                              <label for=""> Visi</label>
+                               <div class="card-body pad">
+                                    <div class="mb-3">
+                                        <textarea class="textarea" placeholder="Place some text here" name="visi"
+                                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                         {{ $detail->visi }}</textarea>
+                                    </div>
+                                </div>
                              </div><hr>
                              <div class="form-group">
-                               {!! $detail->misi !!}
+                               <label for=""> Misi</label>
+                              <div class="card-body pad">
+                                    <div class="mb-3">
+                                        <textarea class="textarea" placeholder="Place some text here" name="misi"
+                                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                         {{ $detail->misi }}</textarea>
+                                    </div>
+                                </div>
                              </div><hr>
 
                             <button type="submit" class="btn btn-primary btn-block">Edit</button>
@@ -100,16 +114,7 @@
       </section>
       <!-- /.content -->
 @else
-<div class="card-body">
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <center>
-        <h5><i class="icon fas fa-ban"></i> Maaf </h5>
-        Halaman yang anda minta tidak ditemukan, ! <br>
-        <a href="{{ url('dashboard') }}"> Kembali ke dashboard </a>
-        </center>
-    </div>
-</div>    
+@include('layouts.alert')
 @endif
 
 @endsection
