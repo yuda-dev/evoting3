@@ -99,7 +99,7 @@
     </section>
     <!-- /.content -->
 @else
-@include('layouts.alert') 
+@include('layouts.404')
 @endif
    
 @endsection

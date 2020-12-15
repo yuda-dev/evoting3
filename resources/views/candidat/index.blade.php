@@ -4,8 +4,8 @@
 
 @if(\Auth::user()->role_id ==1 || \Auth::user()->role_id == 2 )
 <br>
-<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addmodal"><i class="fa fa-plus"></i> Tambah</a>
-<a href="{{ url('candidat/export') }}" class="btn btn-success"><i class="fa fa-file-excel"></i> Export</a>
+<a href="#" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#addmodal"><i class="fa fa-plus"></i> Tambah</a>
+<a href="{{ url('candidat/export') }}" class="btn btn-success btn-flat"><i class="fa fa-file-excel"></i> Export</a>
 <hr>
 <div class="row" style="margin-top: 10px">
     @include('candidat.add')
@@ -62,6 +62,6 @@
     @endforeach
 </div>
 @else
-@include('layouts.alert')
+@include('layouts.404')
 @endif
 @endsection

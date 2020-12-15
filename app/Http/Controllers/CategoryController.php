@@ -23,15 +23,14 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            $data = new Category();
-            $data->nama = $request->nama;
-            $data->save();
+        $request->validate([
+            'nama' => 'required'
+        ]);
+        $data = new Category();
+        $data->nama = $request->nama;
+        $data->save();
 
-            \Session::flash('sukses', 'Category berhasil di tambahkan');
-        } catch (\Exception $e) {
-            \Session::flash('gagal', $e->getMessage());
-        }
+        \Session::flash('sukses', 'Category berhasil di tambahkan');
 
         return redirect('category');
     }
@@ -45,15 +44,14 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-            $data = Category::find($id);
-            $data->nama = $request->nama;
-            $data->save();
+        $request->validate([
+            'nama' => 'required'
+        ]);
+        $data = Category::find($id);
+        $data->nama = $request->nama;
+        $data->save();
 
-            \Session::flash('sukses', 'Category berhasil di ubah');
-        } catch (\Exception $e) {
-            \Session::flash('gagal', $e->getMessage());
-        }
+        \Session::flash('sukses', 'Category berhasil di tambahkan');
 
         return redirect('category');
     }

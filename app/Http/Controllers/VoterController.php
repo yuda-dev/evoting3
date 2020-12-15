@@ -23,6 +23,10 @@ class VoterController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'jumlah' => 'required',
+            'expired' => 'required'
+        ]);
         $jumlah = $request->jumlah;
         $expired = $request->expired;
 

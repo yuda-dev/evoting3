@@ -16,10 +16,16 @@
                     @csrf
                     @method('PUT')
                     <div class="card-body">
-                        <div class="form-group">
+                       <div class="form-group">
                             <label for="exampleInputEmail1">Nama Category</label>
-                            <input type="text" class="form-control" name="nama" id="exampleInputEmail1"
-                                placeholder="Masukan Nama" value="{{ $dt->nama }}">
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                value="{{ $dt->nama }}" name="nama" id="exampleInputEmail1"
+                                placeholder="Masukan Nama">
+                            @error('nama')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -29,6 +35,6 @@
     </div>
 </div>
 @else
-@include('layouts.alert')
+@include('layouts.404')
 @endif
 @endsection

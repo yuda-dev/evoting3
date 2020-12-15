@@ -23,23 +23,23 @@ class KandidatController extends Controller
 
     public function store(Request $request)
     {
-        try {
-
-            $data = new Kandidat();
-            $data->nama = $request->nama;
-            $data->visi = $request->visi;
-            $data->misi = $request->misi;
-            $data->category_id = $request->category_id;
-            $file = $request->file('photo');
-            if ($file) {
-                $file->move('kandidat', $file->getClientOriginalName());
-                $data->photo = $file->getClientOriginalName();
-            }
-            $data->save();
-            \Session::flash('sukses', 'Kandidat Berhasil ditambahkan');
-        } catch (\Exception $e) {
-            \Session::flash('gagal', $e->getMessage());
+        $request->validate([
+            'nama' => 'required',
+            'photo' => 'required'
+        ]);
+        $data = new Kandidat();
+        $data->nama = $request->nama;
+        $data->visi = $request->visi;
+        $data->misi = $request->misi;
+        $data->category_id = $request->category_id;
+        $file = $request->file('photo');
+        if ($file) {
+            $file->move('kandidat', $file->getClientOriginalName());
+            $data->photo = $file->getClientOriginalName();
         }
+        $data->save();
+        \Session::flash('sukses', 'Data Kandidat Berhasil ditambahkan');
+
         return redirect()->back();
     }
 
@@ -52,22 +52,21 @@ class KandidatController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-            $data = Kandidat::find($id);
-            $data->nama = $request->nama;
-            $data->visi = $request->visi;
-            $data->misi = $request->misi;
-            $file = $request->file('photo');
-            if ($file) {
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move('kandidat', $name);
-                $data->photo = $name;
-            }
-            $data->save();
-            \Session::flash('sukses', 'Kandidat Berhasil diubah');
-        } catch (\Exception $e) {
-            \Session::flash('gagal', $e->getMessage());
+        $request->validate([
+            'nama' => 'required',
+        ]);
+        $data = Kandidat::find($id);
+        $data->nama = $request->nama;
+        $data->visi = $request->visi;
+        $data->misi = $request->misi;
+        $data->category_id = $request->category_id;
+        $file = $request->file('photo');
+        if ($file) {
+            $file->move('kandidat', $file->getClientOriginalName());
+            $data->photo = $file->getClientOriginalName();
         }
+        $data->save();
+        \Session::flash('sukses', 'Data Kandidat Berhasil diubah');
 
         return redirect()->back();
     }

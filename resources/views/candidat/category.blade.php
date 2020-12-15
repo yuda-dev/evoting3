@@ -9,11 +9,12 @@
 <div class="row" style="margin-top: 10px">
     @if ($category->kandidats->count() > 0 )
     @foreach ($category->kandidats as $key=>$kdt)
-        <div class="col-md-4 mt-3">
+    <div class="col-md-4 mt-3">
         <!-- Profile Image -->
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
-                <h5 class="text-center">{{ $key+1 }}</h5><hr>
+                <h5 class="text-center">{{ $key+1 }}</h5>
+                <hr>
                 <div class="text-center">
                     <img src="{{ url('kandidat', $kdt->photo) }}" width="100%" alt="">
                 </div>
@@ -43,11 +44,11 @@
     </center>
     @endif
 
-   
+
 
 </div>
 
 @else
-@include('layouts.alert')
+@include('layouts.404')
 @endif
 @endsection

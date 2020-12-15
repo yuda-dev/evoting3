@@ -13,25 +13,36 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Calon</label>
-                            <input type="text" class="form-control" name="nama" id="exampleInputEmail1"
-                                placeholder="Nama Calon" autocomplete="off">
-                                <p>*Wajib di isi</p>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
+                                value="{{ old('nama') }}" placeholder="Nama Calon" autocomplete="off">
+                            <p>*Wajib di isi</p>
+                            @error('nama')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for=""> Photo</label>
-                            <input type="file" name="photo" class="form-control">
+                            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror">
                             <p>* Max 2 Mb</p>
+                            @error('photo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select class="form-control select2" width="100%" name="category_id">
+                            <select class="form-control" width="100%" name="category_id">
                                 <option></option>
                                 @foreach ($category as $ctg)
                                 <option value="{{ $ctg->id }}">{{ $ctg->nama }}</option>
                                 @endforeach
                             </select><br>
-                            <p>Note : Biasanya dipakai Lomba yang mempunyai Kategori perlombaan, selain itu kosongkan saja</p>
-                        </div><hr>
+                            <p>Note : Tidak wajib di isi</p>
+                        </div>
+                        <hr>
                         <div class="form-group">
                             <div class="card card-outline card-info">
                                 <div class="card-header">

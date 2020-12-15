@@ -12,16 +12,28 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="jumlah" id="exampleInputEmail1" placeholder="Masukan Jumlah Pemilih" autocomplete="off">
+                            <input type="text" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
+                                placeholder="Masukan Jumlah Pemilih" autocomplete="off">
+                            @error('jumlah')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="expired" id="" placeholder="Tambah Waktu Kadaluarsa Dalam Itungan menit">
-                            <p style="color: red"> Example : 5 (Maka akan menambah waktu sebanyak 5 Menit) </p>
+                            <input type="text" class="form-control  @error('jumlah') is-invalid @enderror"
+                                name="expired" placeholder="Tambah Waktu Kadaluarsa Dalam Itungan menit">
+                            @error('expired')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <p style="color: blue"> Example : 5 (Maka akan menambah waktu sebanyak 5 Menit) </p>
                         </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
                 </form>
             </div>
 
