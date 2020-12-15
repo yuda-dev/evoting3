@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2020 at 02:56 PM
+-- Generation Time: Dec 15, 2020 at 09:38 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -140,16 +140,6 @@ CREATE TABLE `pemilih` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `pemilih`
---
-
-INSERT INTO `pemilih` (`id`, `user_id`, `username`, `status_id`, `valid_until`, `created_at`, `updated_at`) VALUES
-(604, NULL, '9PNFAC4ZZ9', 2, '2020-11-24 13:40:36', '2020-11-24 06:39:36', '2020-11-24 06:39:36'),
-(605, NULL, '5P3KE9YII1', 2, '2020-11-24 13:40:36', '2020-11-24 06:39:36', '2020-11-24 06:39:36'),
-(606, NULL, 'YOOKBJE2CC', 2, '2020-11-24 13:49:23', '2020-11-24 06:48:23', '2020-11-24 06:48:23'),
-(607, NULL, 'TNF5BCKIAZ', 2, '2020-11-24 13:49:23', '2020-11-24 06:48:23', '2020-11-24 06:48:23');
-
 -- --------------------------------------------------------
 
 --
@@ -206,7 +196,7 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nim_nis` int(11) DEFAULT NULL,
   `jurusan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -220,7 +210,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `email_verified_at`, `password`, `photo`, `nim_nis`, `jurusan`, `remember_token`, `status_pilih`, `created_at`, `updated_at`) VALUES
-(43, 1, 'Yuda Muhtar', 'yuda@gmail.com', NULL, '$2y$10$GQBDylBir9RPtyDbrLO4S.pk3.8xszTM8fwb2g/LWMgCQ23AlznUS', 'default.png', NULL, NULL, NULL, 2, '2020-11-24 03:09:57', '2020-11-24 03:09:57');
+(43, 1, 'Yuda Muhtar', 'yuda@gmail.com', NULL, '$2y$10$GQBDylBir9RPtyDbrLO4S.pk3.8xszTM8fwb2g/LWMgCQ23AlznUS', NULL, NULL, NULL, NULL, 2, '2020-11-24 03:09:57', '2020-11-24 03:09:57');
 
 --
 -- Indexes for dumped tables
@@ -317,7 +307,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pemilih`
 --
 ALTER TABLE `pemilih`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=608;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=615;
 
 --
 -- AUTO_INCREMENT for table `roles`
