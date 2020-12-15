@@ -6,7 +6,6 @@
 <br>
 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addmodal"><i class="fa fa-plus"></i> Tambah</a>
 <a href="{{ url('candidat/export') }}" class="btn btn-success"><i class="fa fa-file-excel"></i> Export</a>
-<button class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i></button>
 <hr>
 <div class="row" style="margin-top: 10px">
     @include('candidat.add')

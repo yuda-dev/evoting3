@@ -3,12 +3,6 @@
 @section('content')
 
 @if(\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
-<br>
-<p>
-  <a href="" class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i> </a>
-  <a href="{{url('candidat')}}" class="btn btn-danger"><i class="fa fa-backward"></i></a>
-</p>
-<hr>
     <!-- Main content -->
     <section class="content"  style="margin-top : 20px">
         <div class="container-fluid">

@@ -53,6 +53,18 @@ $logo = \App\Logo::all();
                             </div>
                         </div>
                         @endif
+                        @if ($message = Session::get('valid'))
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-info">
+                                    <strong>Gagal!</strong> {{ $message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         <form method="POST" action="{{ url('cektoken') }}">
                             @csrf
                             <div class="input-group mb-3">
@@ -102,6 +114,18 @@ $logo = \App\Logo::all();
                         <div class="row">
                             <div class="col">
                                 <div class="alert alert-warning">
+                                    <strong>Gagal!</strong> {{ $message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if ($message = Session::get('valid'))
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-info">
                                     <strong>Gagal!</strong> {{ $message }}.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>

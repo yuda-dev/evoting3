@@ -13,19 +13,16 @@ $pemilih = \App\Pemilih::all();
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            @if(\Auth::user()->role_id == 1)
-
             <div class="image">
+                 @if(\Auth::user()->photo == null)
+                <img src="https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
+                    style="height: 40px;width: 40px" class="img-circle elevation-2" alt="User Image">
+                @else
                 <img src="{{url('uploads/',\Auth::user()->photo)}}" style="height: 40px;width: 40px"
                     class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
 
-            @else
-            <div class="image">
-                <img src="{{url('https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg')}}"
-                    style="height: 40px;width: 40px" class="img-circle elevation-2" alt="User Image">
-            </div>
-            @endif
             <div class="info">
                 <a href="#" class="d-block">{{ \Auth::user()->name}}</a>
             </div>
@@ -46,33 +43,33 @@ $pemilih = \App\Pemilih::all();
                 </li>
                 @if (\Auth::user()->role_id == 1)
 
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('logo/1')}}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>Ubah Logo <span class="right badge badge-success"> New</span></p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('category')}}" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>Data Category <span class="right badge badge-success"> New</span></p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('candidat')}}" class="nav-link">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>Data Kandidat <span class="right badge badge-primary"> {{ count($kandidat) }}</span></p>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('voter')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Data Pemilih <span class="right badge badge-warning"> {{ count($pemilih) }}</span></p>
                     </a>
                 </li>
                 <li class="nav-header">OTHER</li>
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('users')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>User <span class="right badge badge-success"> New</span></p>
@@ -81,14 +78,14 @@ $pemilih = \App\Pemilih::all();
                 @endif
 
                 @if (\Auth::user()->role_id == 2)
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('candidat')}}" class="nav-link">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>Data Kandidat <span class="right badge badge-primary"> {{ count($kandidat) }}</span></p>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('voter')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Data Pemilih <span class="right badge badge-warning"> {{ count($pemilih) }}</span></p>
@@ -97,30 +94,23 @@ $pemilih = \App\Pemilih::all();
                 @endif
 
                 @if (\Auth::user()->role_id == 3)
-                
+
                 @endif
 
-                @if (\Auth::user()->status_pilih == 0) 
-                
+                @if (\Auth::user()->status_pilih == 0)
+
                 @endif
-                @if (\Auth::user()->status_pilih == 1) 
-                
+                @if (\Auth::user()->status_pilih == 1)
+
                 @endif
-                @if (\Auth::user()->status_pilih == 2) 
-                <li class="nav-item">
+                @if (\Auth::user()->status_pilih == 2)
+                <li class="nav-item has-treeview menu-open">
                     <a href="{{url('hitung_cepat')}}" class="nav-link">
                         <i class="nav-icon fas fa-vote-yea"></i>
                         <p>Quic Count <span class="right badge badge-danger"> QC</span></p>
                     </a>
                 </li>
                 @endif
-                <li class="nav-header">OTHER</li>
-                <li class="nav-item">
-                    <a href="{{url('keluar')}}" class="nav-link">
-                        <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
-                        <p>Keluar</p>
-                    </a>
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

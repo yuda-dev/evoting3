@@ -7,7 +7,6 @@
         <div class="box box-warning">
             <div class="box-header" style="margin-top: 20px;margin-left: 2px">
                 <p>
-                    <button class="btn btn-warning btn-refresh btn-sm"><i class="fa fa-sync"></i> Refresh</button>
                     <a href="{{url('category/add')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
                 </p>
                 <p>Note : Jika dalam proses voting nya membutuhkan Kategori, silahkan tambah data kategori, <strong>jika

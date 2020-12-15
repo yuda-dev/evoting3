@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exports\PemilihExport;
 use App\Kandidat;
 use App\Pemilih;
+use Carbon\CarbonImmutable;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +24,7 @@ class VoterController extends Controller
     public function store(Request $request)
     {
         $jumlah = $request->jumlah;
+        $expired = $request->expired;
 
         for ($i = 0; $i < $jumlah; $i++) {
             $karakter = 'ABCDEFGHIJKLMNOPQRSTUPWXYZ0123456789';
@@ -37,9 +40,12 @@ class VoterController extends Controller
             $cek = Pemilih::find($token);
 
             if (empty($cek)) {
-                Pemilih::create([
-                    'username' => $token
-                ]);
+
+                $data = new Pemilih();
+                $data->username = $token;
+                //menambahkan kadaluarsa token itungan menit
+                $data->valid_until = Carbon::now()->addMinutes($expired);
+                $data->save();
             }
         }
         \Session::flash('sukses', 'Token berhasil dibuat');

@@ -34,7 +34,7 @@
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required placeholder="Email">
+                            value="{{ old('email') }}" required placeholder="Email" autocomplete="off">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -72,17 +72,11 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-                @if (Route::has('password.request'))
-                <p class="mb-1">
-                    <a href="{{ route('password.request') }}">Lupa Password?</a>
-                </p>
-                @endif
-
             </div>
             <!-- /.login-card-body -->
         </div>

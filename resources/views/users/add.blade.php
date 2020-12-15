@@ -10,11 +10,6 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="row">
                 <div class="col-md-12">
-                    <p>
-                        <br>
-                        <button class="btn btn-warning btn-refresh"><i class="fa fa-sync"></i></button>
-                        <a href="{{url('users')}}" class="btn btn-danger"><i class="fa fa-backward"></i></a>
-                    </p>
                     <div class="card card-primary" style="margin-top: 30px">
                         <div class="card-header">
                             <h3 class="card-title">{{ $title }}</h3>

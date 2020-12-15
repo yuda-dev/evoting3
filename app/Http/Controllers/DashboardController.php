@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Kandidat;
 use App\Pemilih;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,10 +38,13 @@ class DashboardController extends Controller
             $cek = Pemilih::find($token);
 
             if (empty($cek)) {
-                Pemilih::create([
-                    'username' => $token,
-                    'user_id' => Auth::id()
-                ]);
+
+                $data = new Pemilih();
+                $data->username = $token;
+                $data->user_id = Auth::id();
+                //menambahkan kadaluarsa token itungan menit
+                $data->valid_until = Carbon::now()->addMinutes(480);
+                $data->save();
             }
 
             $user = Auth::id();

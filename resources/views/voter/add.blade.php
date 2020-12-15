@@ -14,6 +14,10 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="jumlah" id="exampleInputEmail1" placeholder="Masukan Jumlah Pemilih" autocomplete="off">
                         </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="expired" id="" placeholder="Tambah Waktu Kadaluarsa Dalam Itungan menit">
+                            <p style="color: red"> Example : 5 (Maka akan menambah waktu sebanyak 5 Menit) </p>
+                        </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>

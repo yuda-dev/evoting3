@@ -6,6 +6,7 @@ use App\Category;
 use App\Kandidat;
 use App\Logo;
 use App\Pemilih;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -47,6 +48,8 @@ class UserController extends Controller
         $token = $request->usertoken;
         $cek = Pemilih::where(['username' => $token])->first();
         $status = Pemilih::where(['username' => $token, 'status_id' => 2])->first();
+        $valid = Pemilih::where('username', $token)->first();
+        $now = Carbon::now();
 
         if (!$cek) {
             Session::flash('Gagal', 'Token tidak ditemukan');
@@ -54,6 +57,9 @@ class UserController extends Controller
         } else {
             if (!$status) {
                 Session::flash('Gagal', 'Token telah digunakan');
+                return redirect()->back();
+            } elseif ($now > $valid->valid_until) {
+                Session::flash('valid', 'Token Sudah kadaluarsa');
                 return redirect()->back();
             } else {
                 $request->session()->put('token', $token);
