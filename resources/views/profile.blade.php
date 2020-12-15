@@ -27,7 +27,7 @@
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>E-mail</b> <a class="float-right">{{ $dt->email }}</a>
+                                <b>E-mail : </b> <a class="float-right">{{ $dt->email }}</a>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +56,6 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="input-group mb-3">
-                                            <label for="">Nama : </label>
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
                                                 value="{{$dt->name}}" required autocomplete="off" autofocus
@@ -75,7 +74,6 @@
                                         </div>
 
                                         <div class="input-group mb-3">
-                                            <label for="">E-mail : </label>
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                                 value="{{$dt->email}}" required autocomplete="off" autofocus
@@ -93,7 +91,6 @@
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <label for="">Photo : </label>
                                             <input type="file" class="form-controll" name="photo"
                                                 style="margin-bottom: 13px">
                                         </div>
