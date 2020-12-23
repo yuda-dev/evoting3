@@ -75,8 +75,6 @@ $logo = \App\Logo::all();
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign"></i>
                                         Masuk</button>
-                                    <a href="{{url('daftar')}}" class="btn btn-success btn-block"></i>Belum
-                                        Punya Token?</a>
                                 </div>
                             </div>
                         </form>
@@ -94,9 +92,9 @@ $logo = \App\Logo::all();
                     <div class="justify-content-center align-self-center">
                         @foreach ($logo as $lg)
                         <center>
-                            <img src="{{ url('frontend', $lg->photo) }}" width="50%" class="img-brd" alt="">
-                            <h5 class="mt-3"><strong>Hallo, {{ $sapa }}</strong></h5>
-                            <p>Silahkan Masukan Token dan mulailah untuk <strong>Memilih</strong> sang Juara.
+                            <img src="{{ url('frontend', $lg->photo) }}" width="30%" class="img-brd" alt="">
+                            <h6 class="mt-3"><strong>Hallo, {{ $sapa }}</strong></h6>
+                            <p style="font-size: 14px">Silahkan Masukan Token dan mulailah untuk <strong>Memilih</strong> sang Juara.
                             </p>
                         </center>
                         @endforeach
@@ -144,8 +142,6 @@ $logo = \App\Logo::all();
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign"></i>
                                         Masuk</button>
-                                    <a href="{{url('daftar')}}" class="btn btn-success btn-block"></i>Belum
-                                        Punya Token?</a>
                                 </div>
                             </div>
                         </form>
@@ -157,13 +153,7 @@ $logo = \App\Logo::all();
     </div>
 
     <div class="row mt-3 mb-5">
-        <div class="col-md-12">
-            <h6><strong>Peraturan Pemilu:</strong></h6>
-            <hr>
-            <p>1. Hanya dapat memilih satu kandidat</p>
-            <p>2. Pemilih hanya mempuyai satu akun / token </p>
-            <hr>
-        </div>
+        
     </div>
 </div>
 

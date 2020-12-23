@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function index()
     {
         $title = 'Data User';
-        $data = Users::orderBy('created_at', 'desc')->get();
+        $data = Users::orderBy('created_at', 'desc')->where('role_id', 2)->get();
         return view('users.index', compact('title', 'data'));
     }
 

@@ -13,11 +13,9 @@
                         <center>
                                 <h5 class="mt-3"><strong>Selamat Datang</strong></h5>
                                 <p>Di Sistem E-voting <strong>{{ $lg->nama }}</strong>, silahkan pilih
-                                    <strong>"Daftar"</strong> untuk
-                                    mendapatkan token, dan Pilih <strong>"Voting"</strong> Untuk melakukan pemilihan
+                                   <strong>"Voting"</strong> Untuk melakukan pemilihan
                                 </p>
                                 @endforeach
-                                <a href="{{ url('daftar') }}" class="btn btn-success"> <i class="fa fa-sign-in" aria-hidden="true"></i> Daftar</a>
                                 <a href="{{ url('user/voting_login') }}" class="btn btn-primary"> <i class="fa fa-archive" aria-hidden="true"></i> Voting</a>
                     </div>
                 </div>
@@ -39,11 +37,9 @@
                         <center>
                                 <h5 class="mt-3"><strong>Selamat Datang</strong></h5>
                                 <p>Di Sistem E-voting <strong>{{ $lg->nama }}</strong>, silahkan pilih
-                                    <strong>"Daftar"</strong> untuk
-                                    mendapatkan token, dan Pilih <strong>"Voting"</strong> Untuk melakukan pemilihan
+                                    <strong>"Voting"</strong> Untuk melakukan pemilihan
                                 </p>
                                 @endforeach
-                                <a href="{{ url('daftar') }}" class="btn btn-success"> <i class="fa fa-sign-in" aria-hidden="true"></i> Daftar</a>
                                 <a href="{{ url('user/voting_login') }}" class="btn btn-primary"> <i class="fa fa-archive" aria-hidden="true"></i> Voting</a>
                     </div>
                 </div>

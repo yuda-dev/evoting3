@@ -8,8 +8,7 @@
         <div class="box box-warning">
             <div class="box-header" style="margin-top: 20px;margin-left: 2px">
                 <p>
-                    <a href="{{ url('users/add') }}" class="btn btn-primary btn-sm btn-flat">[ <i class="fa fa-plus"></i> Tambah Data ]</a>
-                    <a href="{{ url('profile') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-user"></i> Ganti Profile</a>
+                    <a href="{{ url('users/add') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah Data </a>
                     <hr>
                     <a href="{{ url('users/reset') }}" class="btn btn-warning btn-sm btn-flat"> <i class="fa fa-sync"></i> Reset</a>
 

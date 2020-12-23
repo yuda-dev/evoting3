@@ -3,7 +3,7 @@
     <a href="{{url('/')}}" class="brand-link">
         <img src="{{asset('adminlte/voting.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">E-VOTING SCHOOL</span>
+        <span class="brand-text font-weight-light">E-VOTING</span>
     </a>
     <?php
 $kandidat = \App\Kandidat::all();

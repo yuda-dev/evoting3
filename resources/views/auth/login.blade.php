@@ -26,7 +26,7 @@
     <div class="login-box">
         <div class="card">
             <div class="card-body">
-                <center><img src="{{ asset('adminlte/voting.png') }}" width="50%" alt=""></center>
+                <center><img src="{{ asset('adminlte/voting.png') }}" width="40%" alt=""></center>
                 <hr>
                 <p class="login-box-msg">Silahkan Login terlebih dahulu !</p>
 

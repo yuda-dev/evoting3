@@ -29,7 +29,7 @@
                    @if (\Auth::user()->photo == null)
                         <center><img src="https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png" width="50%" alt=""></center>
                    @else
-                        <img src="{{ url('profile/', \Auth::user()->photo) }}" style="border-radius: 50%" alt="">
+                        <center><img src="{{ url('uploads/', \Auth::user()->photo) }}" width="30%" style="border-radius: 50%" alt=""><center>
                    @endif
                     <p class="text-center">{{ \Auth::user()->name }}</p>
                 <div class="dropdown-divider"></div>

@@ -22,7 +22,7 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('adminlte/voting.png') }}" width="30" height="30" class="d-inline-block align-top" alt=""
                 loading="lazy">
-            E-voting-School
+            E-voting
         </a>
         <a href="{{ url('about') }}" class="ml-auto"> <i class="fa fa-info-circle" aria-hidden="true"></i> About </a>
     </nav>

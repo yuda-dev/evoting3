@@ -10,7 +10,13 @@ $sudahvoting = \App\Pemilih::where('status_id', 1)->count();
 $belumvoting = \App\Pemilih::where('status_id', 2)->count();
 @endphp
 
-<div class="row" style="margin-top: 20px">
+<div class="alert alert-info alert-dismissible mt-2">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h6><i class="icon fas fa-info"></i> Info!</h6>
+    <small style="font-size: 14px">Jika dalam pemilihannya dibutuhkan Registrasi terlebih dahulu, Berikut linknya : <strong>{{ url('daftar') }}</strong> </small>
+</div>
+
+<div class="row mt-3">
     <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-info">
@@ -112,7 +118,8 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
                 </div>
                 <div class="alert alert-default mt-4" style="border-color: green">
                     <p><strong>Selamat <strong>{{ \Auth::user()->name }}, </strong><br>
-                            <p style="color: green">Akun Anda sudah di Verifikasi !!</p> <hr>Silahkan klik tombol "
+                            <p style="color: green">Akun Anda sudah di Verifikasi !!</p>
+                            <hr>Silahkan klik tombol "
                             Buat Token " di bawah ini untuk mendapatkan <br> Token pemilihan
                         </strong></p>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Buat Token</button>
@@ -123,7 +130,7 @@ $belumvoting = \App\Pemilih::where('status_id', 2)->count();
 
         @if(\Auth::user()->status_pilih == 2)
         <div class="alert alert-default mt-4" style="border-color: red">
-            <strong>Hore {{\Auth::user()->name}} !! Token berhasil dubuat. <br> 
+            <strong>Hore {{\Auth::user()->name}} !! Token berhasil dubuat. <br>
                 Token ini hanya bisa dipakai satu kali</strong>
             <form>
                 <div class="form-group">
