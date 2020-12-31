@@ -13,3 +13,5 @@ email : yuda@gmail.com <br>
 password : 12345678<br>
 
 ![Screenshot](/public/frontend/bg.png)
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
