@@ -12,4 +12,6 @@ akun admin <br>
 email : yuda@gmail.com <br>
 password : 12345678<br>
 
-![](https://spektaweb.com/uploads/kominfo-pp.png)
+<div align="center">
+    <img src="https://spektaweb.com/uploads/kominfo-pp.png" width="400px"</img> 
+</div>
