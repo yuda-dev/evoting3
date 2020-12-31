@@ -14,4 +14,4 @@ password : 12345678<br>
 
 ![Screenshot](/public/frontend/bg.png)
 
-[![Watch the video](/public/frontend/bg.png)](https://www.youtube.com/watch?v=xEIDp8w644g&feature=youtu.be)
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=xEIDp8w644g&feature=youtu.be)
