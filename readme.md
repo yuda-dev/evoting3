@@ -14,4 +14,4 @@ password : 12345678<br>
 
 ![Screenshot](/public/frontend/bg.png)
 
-[![Watch the video](https://spektaweb.com/uploads/kominfo-pp.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://spektaweb.com/uploads/kominfo-pp.png)](https://www.youtube.com/watch?v=xEIDp8w644g&feature=youtu.be)
